@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus - Login</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .input-glow:focus {
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Custom Scrollbar para combinar com o tema */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Elementos de Fundo Ambientais -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="relative w-full max-w-[440px] py-10 animate-in fade-in zoom-in duration-500">
+        
+        <!-- Card de Login -->
+        <div class="glass-card p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+            <!-- Brilho Interno Decorativo -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl"></div>
+
+            <div class="mb-8 text-center">
+                <h2 class="text-2xl font-bold text-white tracking-tight">Aceder à Conta</h2>
+                <p class="text-slate-400 text-sm mt-2 font-medium">Insira os seus dados de acesso</p>
+            </div>
+
+            <form class="space-y-6">
+                <!-- Campo de Email -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Endereço de E-mail</label>
+                    <div class="relative group">
+                        <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-indigo-400 transition-colors"></i>
+                        <input 
+                            id="username"
+                            type="email" 
+                            placeholder="exemplo@nexus.pt" 
+                            required
+                            class="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all input-glow"
+                        >
+                    </div>
+                </div>
+
+                <!-- Campo de Password -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center ml-1">
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Palavra-passe</label>
+                        <a href="#" class="text-[11px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors">Esqueceu-se?</a>
+                    </div>
+                    <div class="relative group">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-indigo-400 transition-colors"></i>
+                        <input 
+                            id="password-input"
+                            type="password" 
+                            placeholder="••••••••" 
+                            required
+                            class="w-full bg-slate-900/50 border border-white/5 rounded-2xl py-4 pl-12 pr-12 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all input-glow"
+                        >
+                        <button 
+                            type="button" 
+                            onclick="togglePassword()"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors focus:outline-none"
+                        >
+                            <i data-lucide="eye" id="eye-icon" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botão Entrar -->
+                <button 
+                    type="submit" 
+                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black py-4 rounded-2xl shadow-xl shadow-indigo-500/20 flex items-center justify-center gap-3 group transition-all active:scale-[0.98] mt-8"
+                >
+                    <span>Entrar no Sistema</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </form>
+
+            <!-- Social Login Separator -->
+            <div class="relative my-10">
+                <div class="absolute inset-0 flex items-center px-2">
+                    <div class="w-full border-t border-white/5"></div>
+                </div>
+                <div class="relative flex justify-center text-[10px] font-black uppercase tracking-widest text-slate-600">
+                    <span class="px-3 bg-[#1e293b]/40 backdrop-blur rounded-full">Ou continuar com</span>
+                </div>
+            </div>
+
+            <!-- Botões Sociais -->
+            <div class="grid grid-cols-2 gap-4">
+                <button class="flex items-center justify-center gap-3 py-3.5 border border-white/5 rounded-2xl text-slate-400 hover:bg-white/5 hover:text-white transition-all hover:border-white/10 group font-bold text-sm">
+                    <i data-lucide="chrome" class="w-5 h-5 text-slate-500 group-hover:text-white transition-colors"></i>
+                    Google
+                </button>
+                <button class="flex items-center justify-center gap-3 py-3.5 border border-white/5 rounded-2xl text-slate-400 hover:bg-white/5 hover:text-white transition-all hover:border-white/10 group font-bold text-sm">
+                    <i data-lucide="github" class="w-5 h-5 text-slate-500 group-hover:text-white transition-colors"></i>
+                    GitHub
+                </button>
+            </div>
+
+            <!-- Rodapé do Card -->
+            <div class="text-center mt-10">
+                <p class="text-slate-500 text-sm font-medium">
+                    Não tem uma conta? 
+                    <a href="#" class="ml-1 text-indigo-400 font-bold hover:text-indigo-300 transition-colors border-b border-indigo-400/20">Crie uma agora</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="mt-8 flex justify-center gap-8 text-[11px] font-bold text-slate-600 uppercase tracking-[0.2em]">
+            <a href="#" class="hover:text-slate-400 transition-colors">Privacidade</a>
+            <a href="#" class="hover:text-slate-400 transition-colors">Termos</a>
+            <a href="#" class="hover:text-slate-400 transition-colors">Ajuda</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Inicializar ícones Lucide
+        lucide.createIcons();
+
+        // Alternar visualização da password
+        function togglePassword() {
+            const input = document.getElementById('password-input');
+            const icon = document.getElementById('eye-icon');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                input.type = 'password';
+                icon.setAttribute('data-lucide', 'eye');
+            }
+            
+            // Atualizar o ícone específico
+            lucide.createIcons({
+                attrs: {
+                    id: 'eye-icon',
+                    class: 'w-5 h-5'
+                },
+                name: input.type === 'password' ? 'eye' : 'eye-off'
+            });
+        }
+    </script>
+    <script src="frontend/src/login.js"></script>
+</body>
+</html>

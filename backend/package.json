@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "api para login.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "r",
+    "start": "node server.js"
+  },
+  "author": "TTMARCIOKKJJ",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
